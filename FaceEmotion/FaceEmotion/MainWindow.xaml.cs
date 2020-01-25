@@ -14,6 +14,7 @@ using WPFMediaKit.DirectShow.Controls;
 using MetriCam2.Cameras;
 using System.Windows.Interop;
 using System.Drawing;
+using System.Timers;
 
 namespace FaceEmotion
 {
@@ -79,7 +80,21 @@ namespace FaceEmotion
                     "Invalid URI", MessageBoxButton.OK, MessageBoxImage.Error);
                 Environment.Exit(0);
             }
+
+            System.Timers.Timer aTimer = new System.Timers.Timer();
+            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            aTimer.Interval = 3500;
+            aTimer.Enabled = true;
         }
+
+        // Specify what you want to happen when the Elapsed event is raised.
+        private void OnTimedEvent(object source, ElapsedEventArgs e)
+        {
+            FacePhoto.Dispatcher.Invoke(new UpdateTextCallback(this.BrowseButton_Click), new object[] { null, null });
+
+            //BrowseButton_Click(null, null);
+        }
+
         private BitmapImage Bitmap2BitmapImage(Bitmap bitmap)
         {
             using (var file = File.Open(CAM_IMG_FILENAME, FileMode.OpenOrCreate))
@@ -103,7 +118,7 @@ namespace FaceEmotion
             bitmapSource.EndInit();
             return bitmapSource;
         }
-
+        public delegate void UpdateTextCallback(object sender, RoutedEventArgs e);
         // Displays the image and calls UploadAndDetectFaces.
         private async void BrowseButton_Click(object sender, RoutedEventArgs e)
         {
@@ -140,7 +155,6 @@ namespace FaceEmotion
             //bitmapSource.CacheOption = BitmapCacheOption.None;
             //bitmapSource.UriSource = fileUri;
             //bitmapSource.EndInit();
-
             FacePhoto.Source = bitmapSource;
 
             // Detect any faces in the image.
