@@ -5,6 +5,44 @@ using UnityEngine;
 
 public class PetBehaviour : MonoBehaviour
 {
+    class MovementGoal
+    {
+        Vector3 startPosition;
+        public Vector3 targetPosition;
+        float maxSpeed; // in u/s
+        float expectedTime;
+        float currentTime;
+
+        public MovementGoal(Vector3 startPosition, Vector3 targetPosition, float maxSpeed)
+        {
+            this.startPosition = startPosition;
+            this.targetPosition = targetPosition;
+            this.maxSpeed = maxSpeed;
+            currentTime = 0;
+            expectedTime = (targetPosition - startPosition).magnitude / maxSpeed;
+        }
+
+        public Vector3 GetDisplacement(float deltaTime)
+        {
+            currentTime += deltaTime;
+            float progress;
+            if (expectedTime == 0)
+            {
+                progress = 0;
+            }
+            else
+            {
+                progress = currentTime / expectedTime;
+            }
+            progress = Mathf.Clamp(progress, 0, 1);
+            return Vector3.Lerp(startPosition, targetPosition, progress);
+        }
+
+        public bool IsDone()
+        {
+            return currentTime >= expectedTime;
+        }
+    }
     Animator _anim;
 
     private const float MAX_SPEED = 1.25f;
@@ -14,7 +52,7 @@ public class PetBehaviour : MonoBehaviour
 
     private bool goingForSnack = false;
 
-    private Vector3? targetPos = null;
+    private MovementGoal goal = null;
 
     private Vector3? playerForwardHit = null;
 
@@ -27,7 +65,7 @@ public class PetBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(targetPos != null)
+        if(goal != null)
         {
             MoveToTargetPos();
         }
@@ -38,35 +76,18 @@ public class PetBehaviour : MonoBehaviour
 
     private void MoveToTargetPos()
     {
-        if((targetPos.Value - transform.position).magnitude < 0.1f)
+        if (goal == null) { return; }
+        transform.position = goal.GetDisplacement(Time.deltaTime);
+        transform.LookAt(goal.targetPosition);
+        speed = MAX_SPEED;
+        if (goal.IsDone())
         {
-            targetPos = null;
-        }
-
-        var newPos = Vector3.MoveTowards(transform.position, targetPos.Value, 0.1f);
-        newPos.y = targetPos.Value.y;
-
-        transform.LookAt(newPos, Vector3.up);
-
-        if ((newPos - transform.position).magnitude >= 0.7f)
-        {
-            speed = MAX_SPEED;
-        }
-        else if ((newPos - transform.position).magnitude > 0.1f)
-        {
-            speed = 0.99f;
-        }
-        else
-        {
-            _anim.SetTrigger("bark");
             speed = IDLE_SPEED;
-
-            if (goingForSnack)
-            {
-                goingForSnack = false;
-            }
+            goal = null;
+            // We bark upon arriving
+            _anim.SetTrigger("bark");
+            
         }
-        transform.position = newPos;
     }
 
     public void OnUserClickHit(float mood)
@@ -125,7 +146,7 @@ public class PetBehaviour : MonoBehaviour
 
     internal void SetTargetPos(Vector3 position)
     {
-        targetPos = position;
+        goal = new MovementGoal(transform.position, position, MAX_SPEED);             
         goingForSnack = true;
     }
 }
