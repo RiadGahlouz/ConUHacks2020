@@ -6,7 +6,7 @@ public class PetBehaviour : MonoBehaviour
 {
     Animator _anim;
 
-    public float speed = 1f;
+    public float speed = 1.01f;
 
     // Start is called before the first frame update
     void Start()
