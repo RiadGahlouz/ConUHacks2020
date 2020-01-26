@@ -100,11 +100,18 @@ namespace GoogleARCore.Examples.HelloAR
                 return;
             }
 
+
             // If the player moved, the pet should try to move to its center of the screen
-            // if (pet != null)
-            // {
-            //     pet.SetFirstPersonCamera(FirstPersonCamera);
-            // }
+            if (pet != null)
+            {
+                Ray raycast = FirstPersonCamera.ScreenPointToRay(FirstPersonCamera.transform.forward);
+
+                RaycastHit raycastHit;
+                if (Physics.Raycast(raycast, out raycastHit))
+                {
+                    pet.SetPlayerForwardHit(raycastHit.transform.position);
+                }
+            }
 
             // Raycast against the location the player touched to search for planes.
             TrackableHit hit;
@@ -171,10 +178,6 @@ namespace GoogleARCore.Examples.HelloAR
                     // Instantiate prefab at the hit pose.
                     var gameObject = Instantiate(prefab, hit.Pose.position, hit.Pose.rotation);
                     pet = gameObject.GetComponent<PetBehaviour>();
-                    if (pet != null)
-                    {
-                        pet.SetFirstPersonCamera(FirstPersonCamera);
-                    }
 
                     // Compensate for the hitPose rotation facing away from the raycast (i.e.
                     // camera).
