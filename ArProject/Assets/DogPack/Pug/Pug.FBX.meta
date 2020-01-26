@@ -1,0 +1,576 @@
+fileFormatVersion: 2
+guid: 88b7c3c3941253540add98bf914f7ce7
+ModelImporter:
+  serializedVersion: 26
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Bip002
+  - first:
+      1: 100002
+    second: Bip01 Footsteps001
+  - first:
+      1: 100004
+    second: Bip01 Head001
+  - first:
+      1: 100006
+    second: Bip01 HeadNub001
+  - first:
+      1: 100008
+    second: Bip01 L Calf001
+  - first:
+      1: 100010
+    second: Bip01 L Clavicle001
+  - first:
+      1: 100012
+    second: Bip01 L Foot001
+  - first:
+      1: 100014
+    second: Bip01 L Forearm001
+  - first:
+      1: 100016
+    second: Bip01 L Hand001
+  - first:
+      1: 100018
+    second: Bip01 L HorseLink001
+  - first:
+      1: 100020
+    second: Bip01 L Thigh001
+  - first:
+      1: 100022
+    second: Bip01 L Toe001
+  - first:
+      1: 100024
+    second: Bip01 L Toe0Nub001
+  - first:
+      1: 100026
+    second: Bip01 L UpperArm001
+  - first:
+      1: 100028
+    second: Bip01 Neck001
+  - first:
+      1: 100030
+    second: Bip01 Pelvis001
+  - first:
+      1: 100032
+    second: Bip01 Ponytail003
+  - first:
+      1: 100034
+    second: Bip01 Ponytail004
+  - first:
+      1: 100036
+    second: Bip01 Ponytail1Nub001
+  - first:
+      1: 100038
+    second: Bip01 Ponytail2Nub001
+  - first:
+      1: 100040
+    second: Bip01 R Calf001
+  - first:
+      1: 100042
+    second: Bip01 R Clavicle001
+  - first:
+      1: 100044
+    second: Bip01 R Foot001
+  - first:
+      1: 100046
+    second: Bip01 R Forearm001
+  - first:
+      1: 100048
+    second: Bip01 R Hand001
+  - first:
+      1: 100050
+    second: Bip01 R HorseLink001
+  - first:
+      1: 100052
+    second: Bip01 R Thigh001
+  - first:
+      1: 100054
+    second: Bip01 R Toe001
+  - first:
+      1: 100056
+    second: Bip01 R Toe0Nub001
+  - first:
+      1: 100058
+    second: Bip01 R UpperArm001
+  - first:
+      1: 100060
+    second: Bip01 Spine003
+  - first:
+      1: 100062
+    second: Bip01 Spine004
+  - first:
+      1: 100064
+    second: Bip01 Spine005
+  - first:
+      1: 100066
+    second: Bip01 Tail001
+  - first:
+      1: 100068
+    second: Bip01 TailNub001
+  - first:
+      1: 100070
+    second: Bone003
+  - first:
+      1: 100072
+    second: Bone004
+  - first:
+      1: 100074
+    second: EarLeftBase
+  - first:
+      1: 100076
+    second: EarLeftMiddle
+  - first:
+      1: 100078
+    second: EarLeftTip
+  - first:
+      1: 100080
+    second: EarRightBase
+  - first:
+      1: 100082
+    second: EarRightMiddle
+  - first:
+      1: 100084
+    second: EarRightTip
+  - first:
+      1: 100086
+    second: //RootNode
+  - first:
+      1: 100088
+    second: Pug
+  - first:
+      4: 400000
+    second: Bip002
+  - first:
+      4: 400002
+    second: Bip01 Footsteps001
+  - first:
+      4: 400004
+    second: Bip01 Head001
+  - first:
+      4: 400006
+    second: Bip01 HeadNub001
+  - first:
+      4: 400008
+    second: Bip01 L Calf001
+  - first:
+      4: 400010
+    second: Bip01 L Clavicle001
+  - first:
+      4: 400012
+    second: Bip01 L Foot001
+  - first:
+      4: 400014
+    second: Bip01 L Forearm001
+  - first:
+      4: 400016
+    second: Bip01 L Hand001
+  - first:
+      4: 400018
+    second: Bip01 L HorseLink001
+  - first:
+      4: 400020
+    second: Bip01 L Thigh001
+  - first:
+      4: 400022
+    second: Bip01 L Toe001
+  - first:
+      4: 400024
+    second: Bip01 L Toe0Nub001
+  - first:
+      4: 400026
+    second: Bip01 L UpperArm001
+  - first:
+      4: 400028
+    second: Bip01 Neck001
+  - first:
+      4: 400030
+    second: Bip01 Pelvis001
+  - first:
+      4: 400032
+    second: Bip01 Ponytail003
+  - first:
+      4: 400034
+    second: Bip01 Ponytail004
+  - first:
+      4: 400036
+    second: Bip01 Ponytail1Nub001
+  - first:
+      4: 400038
+    second: Bip01 Ponytail2Nub001
+  - first:
+      4: 400040
+    second: Bip01 R Calf001
+  - first:
+      4: 400042
+    second: Bip01 R Clavicle001
+  - first:
+      4: 400044
+    second: Bip01 R Foot001
+  - first:
+      4: 400046
+    second: Bip01 R Forearm001
+  - first:
+      4: 400048
+    second: Bip01 R Hand001
+  - first:
+      4: 400050
+    second: Bip01 R HorseLink001
+  - first:
+      4: 400052
+    second: Bip01 R Thigh001
+  - first:
+      4: 400054
+    second: Bip01 R Toe001
+  - first:
+      4: 400056
+    second: Bip01 R Toe0Nub001
+  - first:
+      4: 400058
+    second: Bip01 R UpperArm001
+  - first:
+      4: 400060
+    second: Bip01 Spine003
+  - first:
+      4: 400062
+    second: Bip01 Spine004
+  - first:
+      4: 400064
+    second: Bip01 Spine005
+  - first:
+      4: 400066
+    second: Bip01 Tail001
+  - first:
+      4: 400068
+    second: Bip01 TailNub001
+  - first:
+      4: 400070
+    second: Bone003
+  - first:
+      4: 400072
+    second: Bone004
+  - first:
+      4: 400074
+    second: EarLeftBase
+  - first:
+      4: 400076
+    second: EarLeftMiddle
+  - first:
+      4: 400078
+    second: EarLeftTip
+  - first:
+      4: 400080
+    second: EarRightBase
+  - first:
+      4: 400082
+    second: EarRightMiddle
+  - first:
+      4: 400084
+    second: EarRightTip
+  - first:
+      4: 400086
+    second: Pug
+  - first:
+      4: 400088
+    second: //RootNode
+  - first:
+      43: 4300000
+    second: Pug
+  - first:
+      74: 7400000
+    second: nothing
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Pug
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pug
+    second: {fileID: 2100000, guid: b4fc40580e38aac42a981bbbd5f987f1, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 0
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: nothing
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bip002
+        weight: 1
+      - path: Bip002/Bip01 Footsteps001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 L Thigh001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 L Thigh001/Bip01 L Calf001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 L Thigh001/Bip01 L Calf001/Bip01
+          L HorseLink001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 L Thigh001/Bip01 L Calf001/Bip01
+          L HorseLink001/Bip01 L Foot001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 L Thigh001/Bip01 L Calf001/Bip01
+          L HorseLink001/Bip01 L Foot001/Bip01 L Toe001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 L Thigh001/Bip01 L Calf001/Bip01
+          L HorseLink001/Bip01 L Foot001/Bip01 L Toe001/Bip01 L Toe0Nub001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 R Thigh001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 R Thigh001/Bip01 R Calf001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 R Thigh001/Bip01 R Calf001/Bip01
+          R HorseLink001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 R Thigh001/Bip01 R Calf001/Bip01
+          R HorseLink001/Bip01 R Foot001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 R Thigh001/Bip01 R Calf001/Bip01
+          R HorseLink001/Bip01 R Foot001/Bip01 R Toe001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 R Thigh001/Bip01 R Calf001/Bip01
+          R HorseLink001/Bip01 R Foot001/Bip01 R Toe001/Bip01 R Toe0Nub001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 Head001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 Head001/Bip01 HeadNub001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 Head001/Bip01 Ponytail003
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 Head001/Bip01 Ponytail003/Bip01 Ponytail1Nub001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 Head001/Bip01 Ponytail004
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 Head001/Bip01 Ponytail004/Bip01 Ponytail2Nub001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 Head001/Bone003
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 Head001/Bone003/Bone004
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 Head001/EarLeftBase
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 Head001/EarLeftBase/EarLeftMiddle
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 Head001/EarLeftBase/EarLeftMiddle/EarLeftTip
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 Head001/EarRightBase
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 Head001/EarRightBase/EarRightMiddle
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 Head001/EarRightBase/EarRightMiddle/EarRightTip
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 L Clavicle001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 L Clavicle001/Bip01 L UpperArm001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 L Clavicle001/Bip01 L UpperArm001/Bip01 L Forearm001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 L Clavicle001/Bip01 L UpperArm001/Bip01 L Forearm001/Bip01
+          L Hand001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 R Clavicle001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 R Clavicle001/Bip01 R UpperArm001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 R Clavicle001/Bip01 R UpperArm001/Bip01 R Forearm001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Spine004/Bip01 Spine005/Bip01
+          Neck001/Bip01 R Clavicle001/Bip01 R UpperArm001/Bip01 R Forearm001/Bip01
+          R Hand001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Tail001
+        weight: 1
+      - path: Bip002/Bip01 Pelvis001/Bip01 Spine003/Bip01 Tail001/Bip01 TailNub001
+        weight: 1
+      - path: Pug
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips:
+  - 0812cbbfc323a604d9a5a3ae04bb0db3
+  - 5ef9e905f86f0144a8da22d4e7f28a36
+  - 4b34c378b1480a2449fe9b4adec4a4b4
+  - f461b1bdd3944b44f872ee82a325c208
+  - e2cadd9c145e16041b10ad952879ee68
+  - dbfb3b9de9ccfda4cb041c3055cb2e53
+  - ef500f664cda4544dbf009c8c76009fc
+  - 9038a97e0784d7e4d859309caf1e05c2
+  - a4098a71900c4394098fbe6043e21651
+  - 4e81254288b95834fbcf05a905013564
+  - d87b7e855e1be2b408a853cf07b5d341
+  - 0bcb9d0fdf63c77458f5c614b226d24c
+  - 17097aa4d8442464b969a9376e2b18b5
+  - 0b9408eebca7ef04bbfb6e382c3911df
+  - aa74a299b34382a43833b49ccd1a8d70
+  - a285fc41103340844b1a5f05f0911750
+  - 5ed21e68bef4f6b4ea4109f0c7b4d728
+  - b72d36ee81d1d2349a94b7f2d29fc93a
+  - 6f3f685105b6b6341913286493276496
+  - 289dc61ec1a65744ebecbecd917618d8
+  - fec164896a9b30041ae49b7276d0dce8
+  - 6ca3aabcc3c4bf04589585eb1e72d793
+  - 78be16837389f544882efd933f31bfb2
+  - 69f95adb635dc3e459385050ae1ea3b3
+  - 8178e9c197baed943b95142919a0d4b5
+  - 2f2bfbde54a8e944786106246d73ff36
+  - ba19bbae1e55eac41a970faad35afb91
+  - 794639d5440895342be17d96758ddaf1
+  - 578eb4e166431564d94f45583d982daa
+  - ea438964393160844a55ba6dc6a5fe95
+  - 21572e57458b7f34c9b70d1b3a7fe63e
+  - 7b26de523d8c81a4eba7483ee48ed777
+  - 80f7af128995cc342b561cd86d8911a7
+  - 8b4d66050f0bb3643bc8f122d1675d5b
+  - aa366af1c7e8eed4b83c9bfcbb93e366
+  - 0ab337bb9bb7ce445a7b006aa01d08b8
+  - d67f3e325660a52408f25e2b41e9f10a
+  - 22670838114d5c544b8b4e1ec93f8c97
+  - 6fad29214995f2f4caaf0275a5f9f21f
+  - e25d2b2d10e97d44c9021fa0df54f3ca
+  - 8e728522460fbae47831771d556cceb4
+  - 6bd4d4dc6b86d2340bc29f83248f4693
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
