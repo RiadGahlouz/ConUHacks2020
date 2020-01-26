@@ -10,7 +10,11 @@ using System.Windows.Media.Imaging;
 using Microsoft.Azure.CognitiveServices.Vision.Face;
 using Microsoft.Azure.CognitiveServices.Vision.Face.Models;
 using System.IO;
-
+using WPFMediaKit.DirectShow.Controls;
+using MetriCam2.Cameras;
+using System.Windows.Interop;
+using System.Drawing;
+using System.Timers;
 
 namespace FaceEmotion
 {
@@ -38,10 +42,33 @@ namespace FaceEmotion
         private const string defaultStatusBarText =
             "Place the mouse pointer over a face to see the face description.";
 
+        private WebCam webCam;
+
+        private const string CAM_IMG_FILENAME = ".\\test.png";
+
+
+        //public WriteableBitmap ImageWebcam
+        //{
+        //    get
+        //    {
+        //        return this.imageWebcam;
+        //    }
+        //    set
+        //    {
+        //        this.imageWebcam = value;
+        //        this.NotifyOfPropertyChange(() => this.FacePhoto);
+        //    }
+        //}
+
         public MainWindow()
         {
             InitializeComponent();
+            foreach (var n in MultimediaUtil.VideoInputNames)
+            {
+                Console.WriteLine(n);
+            }
 
+            //FacePhotos.VideoCaptureDevice = MultimediaUtil.VideoInputDevices[0];
 
             if (Uri.IsWellFormedUriString(faceEndpoint, UriKind.Absolute))
             {
@@ -53,39 +80,88 @@ namespace FaceEmotion
                     "Invalid URI", MessageBoxButton.OK, MessageBoxImage.Error);
                 Environment.Exit(0);
             }
+
+            System.Timers.Timer aTimer = new System.Timers.Timer();
+            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            aTimer.Interval = 3500;
+            aTimer.Enabled = true;
         }
 
+        // Specify what you want to happen when the Elapsed event is raised.
+        private void OnTimedEvent(object source, ElapsedEventArgs e)
+        {
+            FacePhoto.Dispatcher.Invoke(new UpdateTextCallback(this.BrowseButton_Click), new object[] { null, null });
+
+            //BrowseButton_Click(null, null);
+        }
+
+        private BitmapImage Bitmap2BitmapImage(Bitmap bitmap)
+        {
+            using (var file = File.Open(CAM_IMG_FILENAME, FileMode.OpenOrCreate))
+            {
+                bitmap.Save(file, System.Drawing.Imaging.ImageFormat.Png);
+            }
+
+            MemoryStream ms = new MemoryStream();
+
+            using(var file = File.OpenRead(CAM_IMG_FILENAME))
+            {
+                file.CopyTo(ms);
+            }
+
+
+            //BitmapImage bitmapSource = new BitmapImage(new Uri("D:\\Riad\\@Programming\\ConUHacks2020\\test.png"));
+            BitmapImage bitmapSource = new BitmapImage();
+            bitmapSource.BeginInit();
+            bitmapSource.CacheOption = BitmapCacheOption.None;
+            bitmapSource.StreamSource = ms;
+            bitmapSource.EndInit();
+            return bitmapSource;
+        }
+        public delegate void UpdateTextCallback(object sender, RoutedEventArgs e);
         // Displays the image and calls UploadAndDetectFaces.
         private async void BrowseButton_Click(object sender, RoutedEventArgs e)
         {
-            // Get the image file to scan from the user.
-            var openDlg = new Microsoft.Win32.OpenFileDialog();
-
-            openDlg.Filter = "JPEG Image(*.jpg)|*.jpg";
-            bool? result = openDlg.ShowDialog(this);
-
-            // Return if canceled.
-            if (!(bool)result)
+            if (webCam == null)
             {
-                return;
+                webCam = new WebCam();
+                webCam.Connect();
             }
 
-            // Display the image file.
-            string filePath = openDlg.FileName;
+            //// Get the image file to scan from the user.
+            //var openDlg = new Microsoft.Win32.OpenFileDialog();
 
-            Uri fileUri = new Uri(filePath);
-            BitmapImage bitmapSource = new BitmapImage();
+            //openDlg.Filter = "JPEG Image(*.jpg)|*.jpg";
+            //bool? result = openDlg.ShowDialog(this);
 
-            bitmapSource.BeginInit();
-            bitmapSource.CacheOption = BitmapCacheOption.None;
-            bitmapSource.UriSource = fileUri;
-            bitmapSource.EndInit();
+            //// Return if canceled.
+            //if (!(bool)result)
+            //{
+            //    return;
+            //}
 
+            //// Display the image file.
+            //string filePath = openDlg.FileName;
+
+            webCam.Update();
+            var imageBase = webCam.CalcSelectedChannel();
+            var bitmapSource = Bitmap2BitmapImage(imageBase.ToBitmap());
+
+
+            //Uri fileUri = new Uri(filePath);
+            //BitmapImage bitmapSource = new BitmapImage();
+
+            //bitmapSource.BeginInit();
+            //bitmapSource.CacheOption = BitmapCacheOption.None;
+            //bitmapSource.UriSource = fileUri;
+            //bitmapSource.EndInit();
             FacePhoto.Source = bitmapSource;
 
             // Detect any faces in the image.
             Title = "Detecting...";
-            faceList = await UploadAndDetectFaces(filePath);
+            faceList = await UploadAndDetectFaces(null);
+            File.Delete(CAM_IMG_FILENAME);
+
             Title = String.Format(
                 "Detection Finished. {0} face(s) detected", faceList.Count);
 
@@ -107,8 +183,8 @@ namespace FaceEmotion
 
                     // Draw a rectangle on the face.
                     drawingContext.DrawRectangle(
-                        Brushes.Transparent,
-                        new Pen(Brushes.Red, 2),
+                        System.Windows.Media.Brushes.Transparent,
+                        new System.Windows.Media.Pen(System.Windows.Media.Brushes.Red, 2),
                         new Rect(
                             face.FaceRectangle.Left * resizeFactor,
                             face.FaceRectangle.Top * resizeFactor,
@@ -137,6 +213,7 @@ namespace FaceEmotion
                 // Set the status bar text.
                 faceDescriptionStatusBar.Text = defaultStatusBarText;
             }
+
         }
         // Displays the face description when the mouse is over a face rectangle.
         private void FacePhoto_MouseMove(object sender, MouseEventArgs e)
@@ -145,7 +222,7 @@ namespace FaceEmotion
                 return;
 
             // Find the mouse position relative to the image.
-            Point mouseXY = e.GetPosition(FacePhoto);
+            System.Windows.Point mouseXY = e.GetPosition(FacePhoto);
 
             ImageSource imageSource = FacePhoto.Source;
             BitmapSource bitmapSource = (BitmapSource)imageSource;
@@ -179,7 +256,7 @@ namespace FaceEmotion
         }
 
         // Uploads the image file and calls DetectWithStreamAsync.
-        private async Task<IList<DetectedFace>> UploadAndDetectFaces(string imageFilePath)
+        private async Task<IList<DetectedFace>> UploadAndDetectFaces(Stream imgSrc)
         {
             // The list of Face attributes to return.
             IList<FaceAttributeType> faceAttributes =
@@ -193,13 +270,16 @@ namespace FaceEmotion
             // Call the Face API.
             try
             {
-                using (Stream imageFileStream = File.OpenRead(imageFilePath))
+                using (Stream imageFileStream = File.OpenRead(CAM_IMG_FILENAME))
+                //using(Stream imageFileStream = imgSrc)
                 {
                     // The second argument specifies to return the faceId, while
                     // the third argument specifies not to return face landmarks.
+                    Console.WriteLine("Sending the image!");
                     IList<DetectedFace> faceList =
                         await faceClient.Face.DetectWithStreamAsync(
                             imageFileStream, true, false, faceAttributes);
+                    Console.WriteLine("Got " + faceList.Count + " faces!");
                     return faceList;
                 }
             }
@@ -215,6 +295,7 @@ namespace FaceEmotion
                 MessageBox.Show(e.Message, "Error");
                 return new List<DetectedFace>();
             }
+
         }
 
         // Creates a string out of the attributes describing the face.
