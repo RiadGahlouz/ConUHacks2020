@@ -86,7 +86,9 @@ public class PetBehaviour : MonoBehaviour
             goal = null;
             // We bark upon arriving
             _anim.SetTrigger("bark");
-            
+            // Look at the player
+
+            transform.LookAt(GameObject.FindGameObjectsWithTag("Main Camera")[0].transform.position, Vector3.up);
         }
     }
 
