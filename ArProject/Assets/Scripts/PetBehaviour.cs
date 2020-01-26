@@ -12,9 +12,11 @@ public class PetBehaviour : MonoBehaviour
     private const float IDLE_SPEED = 0f;
     public float speed = IDLE_SPEED;
 
+    private bool goingForSnack = false;
+
     private Vector3? targetPos = null;
 
-    private Camera FpsCamera = null;
+    private Vector3? playerForwardHit = null;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +27,6 @@ public class PetBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if(targetPos != null)
         {
             MoveToTargetPos();
@@ -60,6 +61,10 @@ public class PetBehaviour : MonoBehaviour
             speed = IDLE_SPEED;
             _anim.SetTrigger("bark");
 
+            if (goingForSnack)
+            {
+                goingForSnack = false;
+            }
         }
         transform.position = newPos;
     }
@@ -96,28 +101,31 @@ public class PetBehaviour : MonoBehaviour
         }
     }
 
-    internal void SetFirstPersonCamera(Camera firstPersonCamera)
+    internal void SetPlayerForwardHit(Vector3 forwardHit)
     {
-        // if (FpsCamera != null)
-        // {
-        //     // Change to raycast instead of camera
-        //     float mag = (firstPersonCamera.transform.position - FpsCamera.transform.position).magnitude;
-        //     float rot = (firstPersonCamera.transform.rotation.eulerAngles - FpsCamera.transform.rotation.eulerAngles).magnitude;
+        if (playerForwardHit != null)
+        {
+            var mag = (playerForwardHit.Value - forwardHit).magnitude;
 
-        //     if (mag > 0.5f || rot > 0.5f)
-        //     {
-        //         FpsCamera = firstPersonCamera;
-        //         SetTargetPos(FpsCamera.transform.forward.normalized * 3f);
-        //     }
-        //     return;
-        // }
+            if (mag > 0.5f)
+            {
+                playerForwardHit = forwardHit;
+            }
 
-        // First time behavior
-        FpsCamera = firstPersonCamera;
+            if (!goingForSnack) 
+            {
+                SetTargetPos(playerForwardHit.Value);
+            }
+
+            return;
+        }
+
+        playerForwardHit = forwardHit;
     }
 
     internal void SetTargetPos(Vector3 position)
     {
         targetPos = position;
+        goingForSnack = true;
     }
 }
