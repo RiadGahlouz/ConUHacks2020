@@ -57,6 +57,9 @@ namespace GoogleARCore.Examples.HelloAR
         /// </summary>
         public GameObject GameObjectPointPrefab;
 
+        // SnackPrefab
+        public GameObject SnackPrefab;
+
         /// <summary>
         /// The rotation in degrees need to apply to prefab when it is placed.
         /// </summary>
@@ -69,6 +72,10 @@ namespace GoogleARCore.Examples.HelloAR
         private bool m_IsQuitting = false;
 
         private PetBehaviour pet = null;
+
+        private GameObject snack = null;
+
+        private Vector3? snackLanding = null;
 
         /// <summary>
         /// The Unity Awake() method.
@@ -100,6 +107,14 @@ namespace GoogleARCore.Examples.HelloAR
                 return;
             }
 
+            if (snack != null && snackLanding != null)
+            {
+                if ((snack.transform.position - snackLanding.Value).magnitude > 0.2f)
+                {
+                    var newPos = Vector3.MoveTowards(snack.transform.position, snackLanding.Value, 0.05f);
+                    snack.transform.position = newPos;
+                }
+            }
 
             // If the player moved, the pet should try to move to its center of the screen
             if (pet != null)
@@ -171,6 +186,18 @@ namespace GoogleARCore.Examples.HelloAR
                         if(didHitHorizontalPlane)
                         {
                             pet.SetTargetPos(hit.Pose.position);
+
+                            // Throw snack
+                            var playerTransform = FirstPersonCamera.transform;
+                            snack = Instantiate(SnackPrefab, playerTransform.position, playerTransform.rotation);
+                            snackLanding = hit.Pose.position;
+
+                            if ((pet.transform.position - snackLanding.Value).magnitude < 0.2f)
+                            {
+                                Destroy(snack);
+                                snack = null;
+                                snackLanding = null;
+                            }
                         }
                         return;
                     }
