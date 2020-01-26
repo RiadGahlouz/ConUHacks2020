@@ -12,8 +12,11 @@ public class PetBehaviour : MonoBehaviour
     private const float IDLE_SPEED = 0f;
     public float speed = IDLE_SPEED;
 
+    private bool goingForSnack = false;
+
     private Vector3? targetPos = null;
-    private Camera FpsCamera;
+
+    private Vector3? playerForwardHit = null;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +27,6 @@ public class PetBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if(targetPos != null)
         {
             MoveToTargetPos();
@@ -41,25 +43,46 @@ public class PetBehaviour : MonoBehaviour
             targetPos = null;
         }
 
-        var newPos = Vector3.MoveTowards(transform.position, targetPos.Value, 0.03f);
+        var newPos = Vector3.MoveTowards(transform.position, targetPos.Value, 0.05f);
         newPos.y = transform.position.y;
 
         transform.LookAt(newPos, Vector3.up);
-        transform.position = newPos;
 
-        if ((newPos - transform.position).magnitude > 0f)
+        if ((newPos - transform.position).magnitude > 3f)
+        {
+            speed = MAX_SPEED;
+        }
+        else if ((newPos - transform.position).magnitude > 0.3f)
         {
             speed = 0.99f;
         }
         else
         {
             speed = IDLE_SPEED;
+            _anim.SetTrigger("bark");
+
+            if (goingForSnack)
+            {
+                goingForSnack = false;
+            }
         }
+        transform.position = newPos;
     }
 
-    public void OnUserClickHit()
+    public void OnUserClickHit(float mood)
     {
-        _anim.SetTrigger("jump");
+        if (mood > 0.66)
+        {
+            _anim.SetTrigger("bark");
+        } 
+        else if (mood > 0.33)
+        {
+            _anim.SetTrigger("pet");
+        }
+        else
+        {
+            _anim.SetTrigger("jump");
+        }
     }
 
     private void FixSpeedGlitch()
@@ -78,13 +101,31 @@ public class PetBehaviour : MonoBehaviour
         }
     }
 
-    internal void SetFirstPersonCamera(Camera firstPersonCamera)
+    internal void SetPlayerForwardHit(Vector3 forwardHit)
     {
-        FpsCamera = firstPersonCamera;
+        if (playerForwardHit != null)
+        {
+            var mag = (playerForwardHit.Value - forwardHit).magnitude;
+
+            if (mag > 0.5f)
+            {
+                playerForwardHit = forwardHit;
+            }
+
+            if (!goingForSnack) 
+            {
+                SetTargetPos(playerForwardHit.Value);
+            }
+
+            return;
+        }
+
+        playerForwardHit = forwardHit;
     }
 
     internal void SetTargetPos(Vector3 position)
     {
         targetPos = position;
+        goingForSnack = true;
     }
 }
