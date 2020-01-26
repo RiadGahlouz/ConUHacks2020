@@ -68,6 +68,8 @@ namespace GoogleARCore.Examples.HelloAR
         /// </summary>
         private bool m_IsQuitting = false;
 
+        private PetBehaviour pet = null;
+
         /// <summary>
         /// The Unity Awake() method.
         /// </summary>
@@ -103,17 +105,14 @@ namespace GoogleARCore.Examples.HelloAR
             TrackableHitFlags raycastFilter = TrackableHitFlags.PlaneWithinPolygon |
                 TrackableHitFlags.FeaturePointWithSurfaceNormal;
 
+            bool didHitHorizontalPlane = false;
             if (Frame.Raycast(touch.position.x, touch.position.y, raycastFilter, out hit))
             {
                 // Use hit pose and camera pose to check if hittest is from the
                 // back of the plane, if it is, no need to create the anchor.
                 if ((hit.Trackable is DetectedPlane) &&
                     Vector3.Dot(FirstPersonCamera.transform.position - hit.Pose.position,
-                        hit.Pose.rotation * Vector3.up) < 0)
-                {
-                    Debug.Log("Hit at back of the current DetectedPlane");
-                }
-                else
+                        hit.Pose.rotation * Vector3.up) >= 0)
                 {
                     // Choose the prefab based on the Trackable that got hit.
                     GameObject prefab;
@@ -130,6 +129,7 @@ namespace GoogleARCore.Examples.HelloAR
                         }
                         else
                         {
+                            didHitHorizontalPlane = true;
                             prefab = GameObjectHorizontalPlanePrefab;
                         }
                     }
@@ -139,7 +139,7 @@ namespace GoogleARCore.Examples.HelloAR
                     }
 
                     Ray raycast = FirstPersonCamera.ScreenPointToRay(touch.position);
-                    
+
                     RaycastHit raycastHit;
                     if (Physics.Raycast(raycast, out raycastHit))
                     {
@@ -153,18 +153,26 @@ namespace GoogleARCore.Examples.HelloAR
                         }
                     }
 
+                    if (pet != null)
+                    {
+                        if(didHitHorizontalPlane)
+                        {
+                            pet.SetTargetPos(hit.Pose.position);
+                        }
+                        return;
+                    }
+
                     // Instantiate prefab at the hit pose.
                     var gameObject = Instantiate(prefab, hit.Pose.position, hit.Pose.rotation);
-
-                    var pet = gameObject.GetComponent<PetBehaviour>();
-                    // We hit a pet!
-                    if (pet != null) {
+                    pet = gameObject.GetComponent<PetBehaviour>();
+                    if (pet != null)
+                    {
                         pet.SetFirstPersonCamera(FirstPersonCamera);
                     }
 
-                        // Compensate for the hitPose rotation facing away from the raycast (i.e.
-                        // camera).
-                        gameObject.transform.Rotate(0, k_PrefabRotation, 0, Space.Self);
+                    // Compensate for the hitPose rotation facing away from the raycast (i.e.
+                    // camera).
+                    gameObject.transform.Rotate(0, k_PrefabRotation, 0, Space.Self);
 
                     // Create an anchor to allow ARCore to track the hitpoint as understanding of
                     // the physical world evolves.

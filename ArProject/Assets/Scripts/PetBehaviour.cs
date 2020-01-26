@@ -12,6 +12,7 @@ public class PetBehaviour : MonoBehaviour
     private const float IDLE_SPEED = 0f;
     public float speed = IDLE_SPEED;
 
+    private Vector3? targetPos = null;
     private Camera FpsCamera;
 
     // Start is called before the first frame update
@@ -24,22 +25,36 @@ public class PetBehaviour : MonoBehaviour
     void Update()
     {
 
-        var newPos = Vector3.MoveTowards(transform.position, FpsCamera.transform.position, 0.03f);
+        if(targetPos != null)
+        {
+            MoveToTargetPos();
+        }
+
+        FixSpeedGlitch();
+        _anim.SetFloat("speed", speed);
+    }
+
+    private void MoveToTargetPos()
+    {
+        if((targetPos.Value - transform.position).magnitude < 0.1f)
+        {
+            targetPos = null;
+        }
+
+        var newPos = Vector3.MoveTowards(transform.position, targetPos.Value, 0.03f);
         newPos.y = transform.position.y;
 
         transform.LookAt(newPos, Vector3.up);
         transform.position = newPos;
 
-        if((newPos - transform.position).magnitude > 0f)
+        if ((newPos - transform.position).magnitude > 0f)
         {
-            speed = 0.75f;
-        }else
+            speed = 0.99f;
+        }
+        else
         {
             speed = IDLE_SPEED;
         }
-
-        FixSpeedGlitch();
-        _anim.SetFloat("speed", speed);
     }
 
     public void OnUserClickHit()
@@ -66,5 +81,10 @@ public class PetBehaviour : MonoBehaviour
     internal void SetFirstPersonCamera(Camera firstPersonCamera)
     {
         FpsCamera = firstPersonCamera;
+    }
+
+    internal void SetTargetPos(Vector3 position)
+    {
+        targetPos = position;
     }
 }
