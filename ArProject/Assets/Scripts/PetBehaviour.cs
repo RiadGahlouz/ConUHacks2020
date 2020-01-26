@@ -43,23 +43,23 @@ public class PetBehaviour : MonoBehaviour
             targetPos = null;
         }
 
-        var newPos = Vector3.MoveTowards(transform.position, targetPos.Value, 0.05f);
-        newPos.y = transform.position.y;
+        var newPos = Vector3.MoveTowards(transform.position, targetPos.Value, 0.1f);
+        newPos.y = targetPos.Value.y;
 
         transform.LookAt(newPos, Vector3.up);
 
-        if ((newPos - transform.position).magnitude > 3f)
+        if ((newPos - transform.position).magnitude >= 0.7f)
         {
             speed = MAX_SPEED;
         }
-        else if ((newPos - transform.position).magnitude > 0.3f)
+        else if ((newPos - transform.position).magnitude > 0.1f)
         {
             speed = 0.99f;
         }
         else
         {
-            speed = IDLE_SPEED;
             _anim.SetTrigger("bark");
+            speed = IDLE_SPEED;
 
             if (goingForSnack)
             {
