@@ -100,6 +100,12 @@ namespace GoogleARCore.Examples.HelloAR
                 return;
             }
 
+            // If the player moved, the pet should try to move to its center of the screen
+            // if (pet != null)
+            // {
+            //     pet.SetFirstPersonCamera(FirstPersonCamera);
+            // }
+
             // Raycast against the location the player touched to search for planes.
             TrackableHit hit;
             TrackableHitFlags raycastFilter = TrackableHitFlags.PlaneWithinPolygon |
@@ -148,7 +154,7 @@ namespace GoogleARCore.Examples.HelloAR
                         // We hit a pet!
                         if (pb != null)
                         {
-                            pb.OnUserClickHit();
+                            pb.OnUserClickHit(Random.value);
                             return;
                         }
                     }
