@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &1435351422448266266
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7218130621785706733}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.21972373, y: 0.44588566, z: 0.55539453}
+  m_Center: {x: -0.0013785511, y: 0.2135421, z: 0.051469147}
 --- !u!114 &2259205245259006596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,6 +25,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7fd6b194403cc4691b43ff053dafbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
 --- !u!1001 &7218130621785806413
 PrefabInstance:
   m_ObjectHideFlags: 0

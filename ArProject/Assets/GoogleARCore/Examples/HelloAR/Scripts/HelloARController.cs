@@ -138,6 +138,20 @@ namespace GoogleARCore.Examples.HelloAR
                         prefab = GameObjectHorizontalPlanePrefab;
                     }
 
+                    Ray raycast = FirstPersonCamera.ScreenPointToRay(touch.position);
+                    RaycastHit raycastHit;
+                    if (Physics.Raycast(raycast, out raycastHit))
+                    {
+                        Debug.LogError("Something Hit");
+                        var pb = raycastHit.collider.gameObject.GetComponent<PetBehaviour>();
+                        // We hit a pet!
+                        if (pb != null)
+                        {
+                            pb.OnUserClickHit();
+                            return;
+                        }
+                    }
+
                     // Instantiate prefab at the hit pose.
                     var gameObject = Instantiate(prefab, hit.Pose.position, hit.Pose.rotation);
 
