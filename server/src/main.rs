@@ -12,6 +12,7 @@ use std::path::Path;
 use chrono::prelude::*;
 
 use rocket::request::Form;
+use rocket_contrib::serve::StaticFiles;
 
 use serde::{Deserialize, Serialize};
 // use serde_json::Result;
@@ -100,5 +101,8 @@ where P: AsRef<Path>, {
 }
 
 fn main() {
-    rocket::ignite().mount("/", routes![get_feels, post_feels]).launch();
+    rocket::ignite()
+        .mount("/", StaticFiles::from("./web"))
+        .mount("/", routes![get_feels, post_feels])
+        .launch();
 }
