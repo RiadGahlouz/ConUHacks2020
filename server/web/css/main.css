@@ -5,7 +5,6 @@
 .snapper {
   position: sticky;
   top: 0;
-  padding-top: 1em;
 }
 
 .snapper .left {
@@ -15,4 +14,22 @@
 .snapper .right {
   float: left;
   margin-left: 280px;
+}
+
+body, .card {
+  background-color: #0040a6;
+  color: white;
+}
+
+.card {
+  border-color: aliceblue;
+}
+
+.title {
+  font-weight: bolder;
+  font-size: 5em;
+}
+
+#emotion-graph {
+  position: static;
 }
