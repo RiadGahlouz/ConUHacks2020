@@ -1,5 +1,5 @@
 let margins = {
-  top: 10,
+  top: 30,
   right: 10,
   bottom: 10,
   left: 60
@@ -11,7 +11,7 @@ let height = 1000 - margins.top - margins.bottom;
 let xScale = d3.scaleLinear().domain([0, 1]).range([0, width]);
 let yScale = d3.scaleTime().range([0, height]);
 
-let xAxis = d3.axisBottom(xScale);
+let xAxis = d3.axisTop(xScale);
 let yAxis = d3.axisLeft(yScale);
 let yAxisGrid = d3.axisLeft(yScale).tickSize(-width).tickFormat("");
 
@@ -49,7 +49,7 @@ d3.json("/data/hapiness.json").then(function(data) {
   
   graph.append("g")
     .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
+    .attr("transform", "translate(0," + 0 + ")")
     .call(xAxis);
   
   // y axis

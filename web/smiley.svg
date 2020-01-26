@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   width="25mm"
+   height="25mm"
+   viewBox="0 0 25 25"
+   version="1.1"
+   id="svg8">
+  <defs
+     id="defs2" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-11.5,-236.5)"
+     id="layer1">
+    <path
+       style="opacity:1;fill:#ffe680;fill-opacity:1;stroke:#2b2200;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path819"
+       d="M 36,249 A 12,12 0 0 1 24.001074,261 12,12 0 0 1 12,249.00215 12,12 0 0 1 23.996778,237 12,12 0 0 1 35.999999,248.9957" />
+    <path
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#2b2200;stroke-width:1.50756824;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path821"
+       d="M 32.797803,250.99284 A 9.064147,9.0267115 0 0 1 24.15154,257.32227 9.064147,9.0267115 0 0 1 15.500001,251" />
+    <path
+       style="opacity:1;fill:#000008;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path823"
+       d="m 17.999524,246.49293 a 2.25,3 0 0 1 2.041058,-3.25319 2.25,3 0 0 1 2.441103,2.71948 2.25,3 0 0 1 -2.038169,3.25641 A 2.25,3 0 0 1 18.000001,246.5" />
+    <path
+       style="opacity:1;fill:#000008;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path823-0"
+       d="m 25.500001,246.5 a 2.25,3 0 0 1 2.041057,-3.2532 2.25,3 0 0 1 2.441104,2.71949 2.25,3 0 0 1 -2.03817,3.25641 2.25,3 0 0 1 -2.443515,-2.71563" />
+  </g>
+</svg>
