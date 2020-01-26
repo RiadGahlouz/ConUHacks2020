@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Spot app</title>
     <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
   </head>
   <body>
     <div class="jumotron text-center">
@@ -12,31 +13,66 @@
     </div>
     <div class="container">
       <div class="row">
-        <h2>Our story</h2>
-        <p>Problem - Stressed and depressed people don't look for help.</p>
+        <div class="col">
+          <h2>Our story</h2>
+          <p>Problem - Stressed and depressed people don't look for help.</p>
+          <!-- svg id="#story">
+            <g stroke-width="0.1" stroke="red" transform="translate(50, 50) scale(20, 20)" >
+              <clipPath id="image_circle">
+                <circle cx="0" cy="0" r="1"></circle>
+              </clipPath>
+              <circle cx="0" cy="0" r="1"></circle>
+              <image x="-1" y="-1" width="2" height="2" clip-path="url(#image_circle)" xlink:href="https://i.pinimg.com/originals/9a/26/84/9a2684c4213171476e13732af3b26537.jpg"/>
+            </g>
+          </svg -->
+        </div>
       </div>
       <div class="row">
-        <h2>Our technologies</h2>
+        <div class="col">
+          <h2>Our technologies</h2>
+        </div>
       </div>
       <div class="row">
-        
-
-        <div class="col-sm-4">
-          <h3>Dataviz</h3>
-          <p>Lorem ipsum dolor..</p>
+        <div class="col-sm-4 p-1">
+          <div class="card card_stretch">
+            <div class="card-body">
+              <h3 class="card-title">Dataviz</h3>
+              <p class="card-text">To build rich interractive visualisation, we used the D3 library.</p class="card-text">
+            </div>
+          </div>
         </div>
-        <div class="col-sm-4">
-          <h3>Stress detection</h3>
-          <p>Lorem ipsum dolor..</p>
+        <div class="col-sm-4 p-1">
+          <div class="card card_stretch">
+            <div class="card-body">
+              <h3 class="card-title">Stress detection</h3>
+              <p class="card-text">The microsoft congition API is the tool of choice to detect the emotions of someone.</p class="card-text">
+            </div>
+          </div>
         </div>
-        <div class="col-sm-4">
-          <h3>Augmented reality</h3>
-          <p>Lorem ipsum dolor..</p>
+        <div class="col-sm-4 p-1">
+          <div class="card card_stretch">
+            <div class="card-body">
+              <h3 class="card-title">Augmented reality</h3>
+              <p class="card-text">We used the Unity ARCore plugin to </p class="card-text">
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="row">
+          <div class="col">
+            <svg id="emotion-graph" width="100%" height="1000px">
+              <defs>
+                <linearGradient id="Gradient1" x1="1" x2="0" y1="0" y2="0">
+                  <stop offset="0%" stop-color="pink"/>
+                  <stop offset="100%" stop-color="lightblue"/>
+                </linearGradient>
+            </svg>
+          </div>
       </div>
     </div>
 
     <script src="lib/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="lib/d3/d3.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>
