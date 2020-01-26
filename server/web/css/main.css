@@ -29,7 +29,3 @@ body, .card {
   font-weight: bolder;
   font-size: 5em;
 }
-
-#emotion-graph {
-  position: static;
-}

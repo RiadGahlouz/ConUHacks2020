@@ -11,7 +11,7 @@ let height = 1000 - margins.top - margins.bottom;
 let xScale = d3.scaleLinear().domain([0, 1]).range([0, width]);
 let yScale = d3.scaleTime().range([0, height]);
 
-let xAxis = d3.axisTop(xScale);
+let xAxis = d3.axisTop(xScale).tickFormat(d3.format(".0%"));
 let yAxis = d3.axisLeft(yScale);
 let yAxisGrid = d3.axisLeft(yScale).tickSize(-width).tickFormat("");
 
@@ -121,13 +121,23 @@ d3.json("/data/hapiness.json").then(function(data) {
       .attr("x", -11 * marker_radius)
       .attr("y", -marker_radius)
       .style("fill", marker_color);
-    graph.append("text")
-      .attr("id", "t" + i) // Create an id for text so we can select it later for removing on mouseout
-      .attr("x", function() { return xScale(d.stress) - 30; })
-      .attr("y", function() { return yScale(d.date) - 15; })
+    let text = g.append("text")
+      .attr("x", -11 * marker_radius)
+      .attr("y", 0)
+      .attr("fill", "white")
+      .attr("font-size", 4);
+    text.append("tspan")
+      .attr("x", -11 * marker_radius + 1)
+      .attr("y", -1)
       .text(function() {
-        return [d.date, d.stress];
-      }); 
+        return "On the " + d3.timeFormat("%B %d, %Y")(d.date);
+      });
+    text.append("tspan")
+      .attr("x", -11 * marker_radius + 1)
+      .attr("y", 4)
+      .text(function() {
+        return "Spot said 'woof'.";
+      });
   }
 
   function handleMouseOut(d, i) {
@@ -139,6 +149,7 @@ d3.json("/data/hapiness.json").then(function(data) {
       .attr("z", 0);
     g.select("rect")
       .remove();
-    d3.select("#t" + i).remove();
+    g.selectAll("text")
+      .remove();
   }
 });
