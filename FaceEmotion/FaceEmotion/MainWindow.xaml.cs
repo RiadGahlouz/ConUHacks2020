@@ -24,9 +24,12 @@ namespace FaceEmotion
     public partial class MainWindow : Window
     {
         // Add your Face subscription key to your environment variables.
-        private const string subscriptionKey = "eb2e46c6e92c47bc80fc4c8c3f6cd9d3";
         // Add your Face endpoint to your environment variables.
-        private const string faceEndpoint = "https://conuhacks2020.cognitiveservices.azure.com/";
+        //private const string subscriptionKey = "eb2e46c6e92c47bc80fc4c8c3f6cd9d3";
+        //private const string faceEndpoint = "https://conuhacks2020.cognitiveservices.azure.com/";
+
+        private const string subscriptionKey = "3d3cb952d4b743859a331324b11b30c2";
+        private const string faceEndpoint = "https://conuhacks2020-prod.cognitiveservices.azure.com/";
 
         private readonly IFaceClient faceClient = new FaceClient(
             new ApiKeyServiceClientCredentials(subscriptionKey),
@@ -44,7 +47,7 @@ namespace FaceEmotion
 
         private WebCam webCam;
 
-        private const string CAM_IMG_FILENAME = ".\\test.png";
+        //private const string CAM_IMG_FILENAME = ".\\test.png";
 
 
         //public WriteableBitmap ImageWebcam
@@ -83,7 +86,7 @@ namespace FaceEmotion
 
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            aTimer.Interval = 3500;
+            aTimer.Interval = 300;
             aTimer.Enabled = true;
         }
 
@@ -95,19 +98,20 @@ namespace FaceEmotion
             //BrowseButton_Click(null, null);
         }
 
-        private BitmapImage Bitmap2BitmapImage(Bitmap bitmap)
+        private Tuple<BitmapImage, MemoryStream> Bitmap2BitmapImage(Bitmap bitmap)
         {
-            using (var file = File.Open(CAM_IMG_FILENAME, FileMode.OpenOrCreate))
-            {
-                bitmap.Save(file, System.Drawing.Imaging.ImageFormat.Png);
-            }
+            //using (var file = File.Open(CAM_IMG_FILENAME, FileMode.OpenOrCreate))
+            //{
+            //    bitmap.Save(file, System.Drawing.Imaging.ImageFormat.Png);
+            //}
 
             MemoryStream ms = new MemoryStream();
+            bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
 
-            using(var file = File.OpenRead(CAM_IMG_FILENAME))
-            {
-                file.CopyTo(ms);
-            }
+            //using (var file = File.OpenRead(CAM_IMG_FILENAME))
+            //{
+            //    file.CopyTo(ms);
+            //}
 
 
             //BitmapImage bitmapSource = new BitmapImage(new Uri("D:\\Riad\\@Programming\\ConUHacks2020\\test.png"));
@@ -116,7 +120,7 @@ namespace FaceEmotion
             bitmapSource.CacheOption = BitmapCacheOption.None;
             bitmapSource.StreamSource = ms;
             bitmapSource.EndInit();
-            return bitmapSource;
+            return Tuple.Create(bitmapSource, ms);
         }
         public delegate void UpdateTextCallback(object sender, RoutedEventArgs e);
         // Displays the image and calls UploadAndDetectFaces.
@@ -145,7 +149,8 @@ namespace FaceEmotion
 
             webCam.Update();
             var imageBase = webCam.CalcSelectedChannel();
-            var bitmapSource = Bitmap2BitmapImage(imageBase.ToBitmap());
+            var bmpSrcMemStr = Bitmap2BitmapImage(imageBase.ToBitmap());
+            var bitmapSource = bmpSrcMemStr.Item1;
 
 
             //Uri fileUri = new Uri(filePath);
@@ -155,12 +160,12 @@ namespace FaceEmotion
             //bitmapSource.CacheOption = BitmapCacheOption.None;
             //bitmapSource.UriSource = fileUri;
             //bitmapSource.EndInit();
-            FacePhoto.Source = bitmapSource;
+            //FacePhoto.Source = bitmapSource;
 
             // Detect any faces in the image.
             Title = "Detecting...";
-            faceList = await UploadAndDetectFaces(null);
-            File.Delete(CAM_IMG_FILENAME);
+            faceList = await UploadAndDetectFaces(bmpSrcMemStr.Item2);
+            //File.Delete(CAM_IMG_FILENAME);
 
             Title = String.Format(
                 "Detection Finished. {0} face(s) detected", faceList.Count);
@@ -256,7 +261,7 @@ namespace FaceEmotion
         }
 
         // Uploads the image file and calls DetectWithStreamAsync.
-        private async Task<IList<DetectedFace>> UploadAndDetectFaces(Stream imgSrc)
+        private async Task<IList<DetectedFace>> UploadAndDetectFaces(MemoryStream imgSrc)
         {
             // The list of Face attributes to return.
             IList<FaceAttributeType> faceAttributes =
@@ -270,8 +275,12 @@ namespace FaceEmotion
             // Call the Face API.
             try
             {
-                using (Stream imageFileStream = File.OpenRead(CAM_IMG_FILENAME))
-                //using(Stream imageFileStream = imgSrc)
+
+                //var tempFile = Path.GetTempFileName() + ".png";
+                //File.WriteAllBytes(tempFile, imgSrc.ToArray());
+                //using (Stream imageFileStream = File.OpenRead(tempFile))
+                using(MemoryStream imageFileStream = new MemoryStream(imgSrc.ToArray()))
+                //using (Stream imageFileStream = imgSrc)
                 {
                     // The second argument specifies to return the faceId, while
                     // the third argument specifies not to return face landmarks.
