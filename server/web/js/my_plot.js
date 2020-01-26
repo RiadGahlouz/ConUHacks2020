@@ -52,7 +52,7 @@ d3.json("/data/hapiness.json").then(function(data) {
   graph.append("path")
     .attr("d", area(data))
     .style("stroke", "none")
-    .style("fill", "#001330")
+    .style("fill", "url(#Gradient1)")
     .attr("clip-path", "url(#clip)");
   
   top_bar.append("g")
